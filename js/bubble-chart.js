@@ -1,4 +1,4 @@
-d3.json("CleanedData/productivity-vs-annual-hours-worked(1950-2019).json").then(data => {
+d3.json("cleaned_data/productivity-vs-annual-hours-worked(1950-2019).json").then(data => {
     const margin = {top: 20, right: 20, bottom: 50, left: 50};
 
     const container = d3.select("#bubble-chart-container").node().getBoundingClientRect();
@@ -62,7 +62,6 @@ d3.json("CleanedData/productivity-vs-annual-hours-worked(1950-2019).json").then(
     const currentYear = yearSlider.node().value;
 
     const continents = Array.from(new Set(data.map(d => d.continent))).filter(continent => continent !== undefined);
-    console.log(continents);
 
 
     updateBubbleChart(currentYear);

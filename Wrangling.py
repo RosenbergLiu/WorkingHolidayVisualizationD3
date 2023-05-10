@@ -2,7 +2,7 @@ import pandas as pd
 
 #=================productivity-vs-annual-hours-worked.csv======================
 
-df = pd.read_csv("OriginData\productivity-vs-annual-hours-worked.csv")
+df = pd.read_csv("original_data\productivity-vs-annual-hours-worked.csv")
 df.dropna(subset=['Annual working hours per worker'], inplace=True)
 df.dropna(subset=['Productivity: output per hour worked'], inplace=True)
 
@@ -59,7 +59,7 @@ df = df.drop('Code', axis=1)
 
 
 
-df.to_csv('CleanedData\productivity-vs-annual-hours-worked.csv', index=None)
+df.to_csv('cleaned_data\productivity-vs-annual-hours-worked.csv', index=None)
 
 
 #============================================================================
