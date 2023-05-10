@@ -24,7 +24,7 @@ function bubble(data) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-    xScale.domain([0, 50]);
+    xScale.domain([0, 55]);
     yScale.domain(d3.extent(data, d => d.working_hours));
     sizeScale.domain(d3.extent(data, d => d.population));
 
