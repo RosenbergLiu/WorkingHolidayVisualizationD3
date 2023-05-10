@@ -40,7 +40,7 @@ df['Continent'] = continent
 df = df.rename(columns={'Entity': 'entity',
                         'Year': 'year',
                         'Code': 'code',
-                        'Annual working hours per worker': 'awhpw',
+                        'Annual working hours per worker': 'working_hours',
                         'Productivity: output per hour worked': 'pophw',
                         'Population (historical estimates)': 'population',
                         'Continent': 'continent'
@@ -77,14 +77,17 @@ cleaned_df = cleaned_df.dropna()
 
 cleaned_df['health'] = cleaned_df['health'].astype(float)
 cleaned_df['income'] = cleaned_df['income'].astype(float)
-
-cleaned_df['health_rate'] = cleaned_df['health']/cleaned_df['income']
+cleaned_df['income_p_hour'] = cleaned_df['income']/cleaned_df['working_hours']
+cleaned_df['health_share'] = cleaned_df['health']/cleaned_df['income']
 
 # ================================================================================
 
 
 # =================food expenditure rate=========================================
-df = pd.read_csv('original_data/food-expenditure-share-gdp.csv.csv')
-
+df = pd.read_csv('original_data/food-expenditure-share-gdp.csv')
+df = df.rename(columns={'Code': 'code',
+                        'Year': 'year',
+                        'share_expenditure_food': 'food_share'
+                        })
 
 cleaned_df.to_csv('data.csv')

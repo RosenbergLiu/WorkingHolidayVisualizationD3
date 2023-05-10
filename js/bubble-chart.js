@@ -24,8 +24,8 @@ function bubble(data) {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-    xScale.domain([0, d3.max(data, d => d.pophw) * 1.5]);
-    yScale.domain(d3.extent(data, d => d.awhpw));
+    xScale.domain([0, 50]);
+    yScale.domain(d3.extent(data, d => d.working_hours));
     sizeScale.domain(d3.extent(data, d => d.population));
 
     const xAxis = d3.axisBottom(xScale);
@@ -47,7 +47,7 @@ function bubble(data) {
         .attr("text-anchor", "middle")
         .attr("x", width / 2)
         .attr("y", height + margin.bottom - 5)
-        .text("Productivity output per hour worked (USD)");
+        .text("Income per hour worked (USD)");
 
     // Add y axis label
     svg.append("text")
@@ -103,7 +103,7 @@ function bubble(data) {
         bubblesEnter.merge(bubbles)
             .transition()
             .duration(300)
-            .attr("transform", d => `translate(${xScale(d.pophw)}, ${yScale(d.awhpw)})`);
+            .attr("transform", d => `translate(${xScale(d.income_p_hour)}, ${yScale(d.working_hours)})`);
 
 
     }
@@ -122,23 +122,23 @@ function bubble(data) {
 
         svg.append("text")
             .attr("class", "population-text")
-            .attr("x", xScale(d.pophw))
-            .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 5)
-            .text(d.population + "M")
+            .attr("x", xScale(d.income_p_hour))
+            .attr("y", yScale(d.working_hours) + sizeScale(d.population) + 5)
+            .text(d.population + " Million population")
             .style("font-size", "12px");
 
         svg.append("text")
             .attr("class", "productivity-text")
-            .attr("x", xScale(d.pophw))
-            .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 20)
-            .text(d.pophw + "USD/Hour")
+            .attr("x", xScale(d.income_p_hour))
+            .attr("y", yScale(d.working_hours) + sizeScale(d.population) + 20)
+            .text(d.income_p_hour + " USD/Hour")
             .style("font-size", "12px");
 
         svg.append("text")
             .attr("class", "hour-text")
-            .attr("x", xScale(d.pophw))
-            .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 35)
-            .text(d.awhpw + "Hours")
+            .attr("x", xScale(d.income_p_hour))
+            .attr("y", yScale(d.working_hours) + sizeScale(d.population) + 35)
+            .text(d.working_hours + " Hours/Year")
             .style("font-size", "12px");
 
 
