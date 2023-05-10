@@ -1,4 +1,4 @@
-d3.json("cleaned_data/productivity-vs-annual-hours-worked(1950-2019).json").then(bubble);
+d3.csv("data.csv").then(bubble);
 
 
 function bubble(data) {
@@ -89,13 +89,13 @@ function bubble(data) {
 
 
         bubblesEnter.append("circle")
-            .attr("r", d => sizeScale(d.population))
+            .attr("r", d => sizeScale(d.population)/2)
             .attr("fill", d => colorScale(d.continent))
             .attr("opacity", 0.8);
 
         bubblesEnter.append("text")
             .attr("text-anchor", "middle")
-            .attr("dy", d => `-${sizeScale(d.population) + 5}px`)
+            .attr("dy", d => `-${sizeScale(d.population)/1.5}px`)
             .text(d => d.entity)
             .style("font-size", "8px")
             .style("opacity", 0.8);
@@ -123,21 +123,21 @@ function bubble(data) {
         svg.append("text")
             .attr("class", "population-text")
             .attr("x", xScale(d.pophw))
-            .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 15)
+            .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 5)
             .text(d.population + "M")
             .style("font-size", "12px");
 
         svg.append("text")
             .attr("class", "productivity-text")
             .attr("x", xScale(d.pophw))
-            .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 30)
+            .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 20)
             .text(d.pophw + "USD/Hour")
             .style("font-size", "12px");
 
         svg.append("text")
             .attr("class", "hour-text")
             .attr("x", xScale(d.pophw))
-            .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 45)
+            .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 35)
             .text(d.awhpw + "Hours")
             .style("font-size", "12px");
 
@@ -193,7 +193,5 @@ function bubble(data) {
             .attr("y", 15)
             .text(d => d);
     }
-
-
 }
 
