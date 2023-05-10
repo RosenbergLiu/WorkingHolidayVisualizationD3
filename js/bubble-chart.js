@@ -1,4 +1,7 @@
-d3.json("cleaned_data/productivity-vs-annual-hours-worked(1950-2019).json").then(data => {
+d3.json("cleaned_data/productivity-vs-annual-hours-worked(1950-2019).json").then(bubble);
+
+
+function bubble(data) {
     const margin = {top: 20, right: 20, bottom: 50, left: 50};
 
     const container = d3.select("#bubble-chart-container").node().getBoundingClientRect();
@@ -6,8 +9,6 @@ d3.json("cleaned_data/productivity-vs-annual-hours-worked(1950-2019).json").then
 
     const width = containerWidth - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
-
-
 
 
     const xScale = d3.scaleLinear().range([0, width]);
@@ -23,7 +24,7 @@ d3.json("cleaned_data/productivity-vs-annual-hours-worked(1950-2019).json").then
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-    xScale.domain([0, d3.max(data, d => d.pophw)*1.5]);
+    xScale.domain([0, d3.max(data, d => d.pophw) * 1.5]);
     yScale.domain(d3.extent(data, d => d.awhpw));
     sizeScale.domain(d3.extent(data, d => d.population));
 
@@ -123,23 +124,22 @@ d3.json("cleaned_data/productivity-vs-annual-hours-worked(1950-2019).json").then
             .attr("class", "population-text")
             .attr("x", xScale(d.pophw))
             .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 15)
-            .text(d.population +"M")
+            .text(d.population + "M")
             .style("font-size", "12px");
 
         svg.append("text")
             .attr("class", "productivity-text")
             .attr("x", xScale(d.pophw))
             .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 30)
-            .text(d.pophw +"USD/Hour")
+            .text(d.pophw + "USD/Hour")
             .style("font-size", "12px");
 
         svg.append("text")
             .attr("class", "hour-text")
             .attr("x", xScale(d.pophw))
             .attr("y", yScale(d.awhpw) + sizeScale(d.population) + 45)
-            .text(d.awhpw +"Hours")
+            .text(d.awhpw + "Hours")
             .style("font-size", "12px");
-
 
 
         d3.select(this).select("text")
@@ -162,6 +162,7 @@ d3.json("cleaned_data/productivity-vs-annual-hours-worked(1950-2019).json").then
             .style("opacity", 0.8)
             .style("font-size", "8px");
     }
+
     function createColorLegend() {
         const legend = svg.append("g")
             .attr("class", "color-legend")
@@ -194,9 +195,5 @@ d3.json("cleaned_data/productivity-vs-annual-hours-worked(1950-2019).json").then
     }
 
 
-
-
-
-
-});
+}
 
