@@ -79,7 +79,6 @@ cleaned_df['health'] = cleaned_df['health'].astype(float)
 cleaned_df['income'] = cleaned_df['income'].astype(float)
 cleaned_df['income_p_hour'] = cleaned_df['income']/cleaned_df['working_hours']
 cleaned_df['health_share'] = cleaned_df['health']/cleaned_df['income']
-cleaned_df.to_csv('data_years.csv', index=None)
 # ================================================================================
 
 
@@ -90,12 +89,15 @@ df = df.rename(columns={'Code': 'code',
                         'share_expenditure_food': 'food_share'
                         })
 df = df.drop(columns=['Entity', 'consumer_expenditure', 'Continent'])
+df['year'] = '2019'
 cleaned_df['year'] = cleaned_df['year'].astype(str)
 cleaned_df['code'] = cleaned_df['code'].astype(str)
 df['year'] = df['year'].astype(str)
 df['code'] = df['code'].astype(str)
-cleaned_df = pd.merge(cleaned_df,df,on=['code','year'])
-print(cleaned_df.columns)
+
+cleaned_df = pd.merge(cleaned_df,df,on=['code','year'], how='left')
+print(cleaned_df.head())
+cleaned_df.to_csv('data.csv', index=None)
 
 
 
