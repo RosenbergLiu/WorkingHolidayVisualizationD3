@@ -1,4 +1,7 @@
 import pandas as pd
+import warnings
+
+warnings.filterwarnings("ignore")
 
 # =================productivity-vs-annual-hours-worked.csv======================
 
@@ -77,8 +80,8 @@ cleaned_df = cleaned_df.dropna()
 
 cleaned_df['health'] = cleaned_df['health'].astype(float)
 cleaned_df['income'] = cleaned_df['income'].astype(float)
-cleaned_df['income_p_hour'] = cleaned_df['income']/cleaned_df['working_hours']
-cleaned_df['health_share'] = cleaned_df['health']/cleaned_df['income']
+cleaned_df['income_p_hour'] = cleaned_df['income'] / cleaned_df['working_hours']
+cleaned_df['health_share'] = cleaned_df['health'] / cleaned_df['income']
 # ================================================================================
 
 
@@ -95,9 +98,33 @@ cleaned_df['code'] = cleaned_df['code'].astype(str)
 df['year'] = df['year'].astype(str)
 df['code'] = df['code'].astype(str)
 
-cleaned_df = pd.merge(cleaned_df,df,on=['code','year'], how='left')
-print(cleaned_df.head())
+cleaned_df = pd.merge(cleaned_df, df, on=['code', 'year'], how='left')
 cleaned_df.to_csv('data.csv', index=None)
 
+# =====================
+df = pd.read_csv('original_data/IDD_06052023124920962.csv')
+df = df[df['Methodology'] == 'New income definition since 2012']
 
+
+
+def get_latest_record(dataframe):
+    location_code = ''
+    age_group = ''
+    index_to_del = []
+    for i, r in dataframe.iterrows():
+        if r['LOCATION'] == location_code and r['Measure'] == age_group:
+            index_to_del.append(i - 1)
+        location_code = r['LOCATION']
+        age_group = r['Measure']
+
+    dataframe.drop(index_to_del, inplace=True)
+    return dataframe
+df = get_latest_record(df)
+
+age_df = df[df['Measure'].astype(str).str.contains('mean disposable')]
+gini_df = df[df['Measure'] =='Gini (disposable income, post taxes and transfers)']
+gini_df = gini_df[gini_df['AGE'] == 'TOT']
+age_df['year'] = '2019'
+age_df.to_csv('age.csv', index=False)
+gini_df.to_csv('gini.csv')
 
