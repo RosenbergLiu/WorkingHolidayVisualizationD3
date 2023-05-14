@@ -10,7 +10,6 @@ function bubble(data) {
     const width = containerWidth - margin.left - margin.right;
     const height = 600 - margin.top - margin.bottom;
 
-
     const xScale = d3.scaleLinear().range([0, width]);
     const yScale = d3.scaleLinear().range([height, 0]);
     const sizeScale = d3.scaleSqrt().range([5, 25]);

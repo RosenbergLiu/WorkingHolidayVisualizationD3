@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{bootstrap, d3.v7}" />
+    <file url="PROJECT" libraries="{bootstrap, d3-scale-chromatic.v1, d3.v4, d3.v7}" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 import pandas as pd
 import warnings
+import numpy as np
 
 warnings.filterwarnings("ignore")
 
@@ -106,7 +107,6 @@ df = pd.read_csv('original_data/IDD_06052023124920962.csv')
 df = df[df['Methodology'] == 'New income definition since 2012']
 
 
-
 def get_latest_record(dataframe):
     location_code = ''
     age_group = ''
@@ -119,12 +119,35 @@ def get_latest_record(dataframe):
 
     dataframe.drop(index_to_del, inplace=True)
     return dataframe
+
+
 df = get_latest_record(df)
 
 age_df = df[df['Measure'].astype(str).str.contains('mean disposable')]
-gini_df = df[df['Measure'] =='Gini (disposable income, post taxes and transfers)']
+gini_df = df[df['Measure'] == 'Gini (disposable income, post taxes and transfers)']
 gini_df = gini_df[gini_df['AGE'] == 'TOT']
 age_df['year'] = '2019'
-age_df.to_csv('age.csv', index=False)
-gini_df.to_csv('gini.csv')
+age_df = age_df.rename(columns={'LOCATION': 'code',
+                                'Measure': 'age',
+                                'Value': 'income'
+                                })
+age_df = age_df[['code', 'age', 'income']]
 
+stack_df = age_df.pivot_table(index='age', columns='code', values='income')
+
+stack_df = stack_df.reset_index(drop=True)
+
+for column in stack_df:
+    tot = stack_df[column].sum()
+    ratio_set = []
+    for row in stack_df[column]:
+        ratio_set.append(row*10 / tot)
+    stack_df[column] = ratio_set
+
+stack_df.index = np.arange(0.5, len(stack_df) + 0.5, 1)
+
+
+stack_df.index.name = 'age'
+
+stack_df.to_csv('age.csv')
+gini_df.to_csv('gini.csv')
