@@ -50,12 +50,13 @@ async function drawStreamGraph(){
 
 
     let svg = d3.select("#steam-chart")
+        .append("svg")
         .attr("viewBox", [0, 0, width, height]);
 
 
 
 
-    let paths = svg.selectAll("path")
+    svg.selectAll("path")
         .data(series)
         .join("path")
         .attr("fill", ({key}) => color(key))
@@ -69,6 +70,7 @@ async function drawStreamGraph(){
     svg.selectAll("country_labels")
         .data(series)
         .join("text")
+        .attr("class", "country_labels")
         .attr("id", d => `label-${d.key}`)
         .attr("dy", ".35em")
         .style("font-size", 10)
@@ -85,7 +87,7 @@ async function drawStreamGraph(){
     function mouseClick(event, d) {
         // Remove the current graph
         d3.select('#steam-chart').selectAll('*').remove();
-        d3.select('#back-button').style('display', 'block');
+        d3.select('#back-to-steam').style('display', 'block');
         drawLineGraph(data, d.key);
     }
 
@@ -99,7 +101,7 @@ async function drawStreamGraph(){
             .style('stroke', 'black')
             .style('stroke-width', '2');
 
-        svg.selectAll('text')
+        svg.selectAll('.country_labels')
             .style('fill-opacity',0.1);
         svg.select(`#label-${d.key}`)  // Select the text element with the corresponding id
             .style('fill', ({key}) => color(key))
@@ -114,8 +116,9 @@ async function drawStreamGraph(){
         svg.selectAll('path')
             .style('fill-opacity', null);
 
-        svg.selectAll('text')  // Reset the style of all text elements
-            .style('fill', ({key}) => color(key));
+        svg.selectAll('.country_labels')  // Reset the style of all text elements
+            .style('fill', ({key}) => color(key))
+            .style('fill-opacity',1);
     }
 
     // Axes
@@ -127,4 +130,5 @@ async function drawStreamGraph(){
     svg.append("g")
         .call(xAxis);
 
+    d3.select('#steam-chart-placeholder').selectAll('*').remove();
 }

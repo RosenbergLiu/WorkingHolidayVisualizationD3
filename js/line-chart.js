@@ -24,6 +24,7 @@ async function drawLineGraph(data, key= null){
 
     // Define SVG
     let svg = d3.select("#steam-chart")
+        .append("svg")
         .attr("viewBox", [0, 0, width, height]);
     // Draw line
     svg.append("path")
@@ -46,12 +47,12 @@ async function drawLineGraph(data, key= null){
     svg.append("g").call(yAxis);
 
 
-    d3.select('#back-button').on('click', function () {
+    d3.select('#back-to-steam').on('click', function () {
         // Remove the current graph
         d3.select('#steam-chart').selectAll('*').remove();
 
         // Hide the back button and show the streamgraph
-        d3.select('#back-button').style('display', 'none');
+        d3.select('#back-to-steam').style('display', 'none');
         d3.select('#steam-chart').style('display', 'block');
 
         // Draw the streamgraph

@@ -30,11 +30,20 @@
     </div>
 
     <div class="card-body">
-        <div id="steam-chart-container">
-            <svg id="steam-chart" class="placeholder-glow">
-            </svg>
-            <button class="btn btn-primary" id="back-button" style="display: none;">Back to all countries</button>
 
+        <div id="steam-chart-container">
+
+            <div id="steam-chart"></div>
+            <button class="btn btn-primary" id="back-to-steam" style="display: none;">Back to all countries</button>
+            <p class="placeholder-glow" id="steam-chart-placeholder">
+                <span class="placeholder col-12 bg-primary"></span>
+                <span class="placeholder col-12 bg-secondary"></span>
+                <span class="placeholder col-12 bg-success"></span>
+                <span class="placeholder col-12 bg-danger"></span>
+                <span class="placeholder col-12 bg-warning"></span>
+                <span class="placeholder col-12 bg-info"></span>
+                <span class="placeholder col-12 bg-dark"></span>
+            </p>
             <script>
                 drawStreamGraph();
             </script>
@@ -50,11 +59,22 @@
     </div>
 
     <div class="card-body">
+
         <div id="bubble-chart-container">
             <div id="bubble-chart"></div>
+            <p class="placeholder-glow" id="bubble-chart-placeholder">
+                <span class="placeholder col-12 bg-primary"></span>
+                <span class="placeholder col-12 bg-secondary"></span>
+                <span class="placeholder col-12 bg-success"></span>
+                <span class="placeholder col-12 bg-danger"></span>
+                <span class="placeholder col-12 bg-warning"></span>
+                <span class="placeholder col-12 bg-info"></span>
+                <span class="placeholder col-12 bg-dark"></span>
+            </p>
             <script>
                 drawBubbleChart();
             </script>
+
         </div>
     </div>
     <div class="card-footer">
