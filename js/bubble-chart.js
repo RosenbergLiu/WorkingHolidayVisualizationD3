@@ -98,7 +98,7 @@ async function drawBubbleChart(){
             .text(d => d.entity)
             .style("font-size", "8px")
             .style("opacity", 0.8);
-        
+
         bubblesEnter.attr("transform", d => `translate(${xScale(d.income_p_hour)}, ${yScale(d.working_hours)})`);
         bubblesEnter.merge(bubbles)
             .transition()

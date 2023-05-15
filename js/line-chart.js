@@ -1,4 +1,5 @@
 async function drawLineGraph(key= null){
+
     let data = await d3.csv("age.csv")
     let margin = {top: 20, right: 20, bottom: 50, left: 50};
     let container = d3.select("#steam-chart-container").node().getBoundingClientRect();
@@ -46,8 +47,6 @@ async function drawLineGraph(key= null){
     svg.append("g").call(yAxis);
 
 
-
-
     d3.select('#back-button').on('click', function () {
         // Remove the current graph
         d3.select('#steam-chart').selectAll('*').remove();
@@ -59,4 +58,5 @@ async function drawLineGraph(key= null){
         // Draw the streamgraph
         drawStreamGraph();
     });
+
 }

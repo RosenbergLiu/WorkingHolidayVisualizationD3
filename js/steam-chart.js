@@ -47,6 +47,39 @@ async function drawStreamGraph(){
         .attr("viewBox", [0, 0, width, height]);
 
 
+
+
+    let paths = svg.selectAll("path")
+        .data(series)
+        .join("path")
+        .attr("fill", ({key}) => color(key))
+        .attr("d", area)
+        .on("mouseout", mouseOut)
+        .on('mouseover', mouseOver)
+        .on('click', mouseClick);
+
+
+
+    svg.selectAll("mylabels")
+        .data(series)
+        .join("text")
+        .attr("dy", ".35em")
+        .style("text-anchor", "start")
+        .style("font-size", 10)
+        .style("fill", ({key}) => color(key))
+        .attr("transform", function(d) {
+            return "translate(" + (margin.right) + "," + (y((d[0][0]+d[0][1])/2)) + ")";
+        })
+        .text(({key}) => key)
+
+
+    function mouseClick(event, d) {
+        // Remove the current graph
+        d3.select('#steam-chart').selectAll('*').remove();
+        d3.select('#back-button').style('display', 'block');
+        drawLineGraph(d.key);
+    }
+
     function mouseOut() {
         d3.select(this)
             .style('fill-opacity', null)
@@ -55,28 +88,15 @@ async function drawStreamGraph(){
         svg.selectAll('path')
             .style('fill-opacity', null);
     }
+    function mouseOver() {
 
-    let paths = svg.selectAll("path")
-        .data(series)
-        .join("path")
-        .attr("fill", ({key}) => color(key))
-        .attr("d", area)
-        .on("mouseout", mouseOut)
-        .on('mouseover', function (d, i) {
-            d3.select(this)
-                .style('fill-opacity', 1)
-                .style('stroke', 'black')
-                .style('stroke-width', '2');
-
-            paths.filter((d, j) => i !== j)
-                .style('fill-opacity', 0.5);
-        })
-        .on('click', function (event, d) {   // Add 'event' parameter
-                                             // Remove the current graph
-            d3.select('#steam-chart').selectAll('*').remove();
-            d3.select('#back-button').style('display', 'block');
-            drawLineGraph(d.key);
-        });
+        svg.selectAll('path')
+            .style('fill-opacity', 0.5);
+        d3.select(this)
+            .style('fill-opacity', 1)
+            .style('stroke', 'black')
+            .style('stroke-width', '2');
+    }
 
     // Axes
     let xAxis = g => g
