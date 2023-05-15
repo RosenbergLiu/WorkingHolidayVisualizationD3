@@ -99,8 +99,11 @@ async function drawStreamGraph(){
             .style('stroke', 'black')
             .style('stroke-width', '2');
 
-        svg.selectAll(`.label-${d.key}`)  // Select the text element with the corresponding class
-            .style('fill', 'black');
+        svg.selectAll('text')
+            .style('fill-opacity',0.1);
+        svg.select(`#label-${d.key}`)  // Select the text element with the corresponding id
+            .style('fill', ({key}) => color(key))
+            .style('fill-opacity',1);
     }
 
     function mouseOut(event, d) {
