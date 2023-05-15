@@ -2,15 +2,21 @@
 async function drawStreamGraph(){
 
     let data = await d3.csv("age.csv")
+
     let margin = {top: 20, right: 20, bottom: 50, left: 50};
     let container = d3.select("#steam-chart-container").node().getBoundingClientRect();
     let containerWidth = container.width;
 
     let width = containerWidth - margin.left - margin.right;
-    let height = 600 - margin.top - margin.bottom;
+    let height = 800 - margin.top - margin.bottom;
 
 
     let keys = data.columns.slice(1);
+
+    let countryNameMap = {};
+    for(let code of keys){
+        countryNameMap[code] = await fetchCountryName(code);
+    }
 
     let stackGen = d3.stack()
         .keys(keys)
@@ -60,35 +66,31 @@ async function drawStreamGraph(){
 
 
 
-    svg.selectAll("mylabels")
+    svg.selectAll("country_labels")
         .data(series)
         .join("text")
+        .attr("id", d => `label-${d.key}`)
         .attr("dy", ".35em")
-        .style("text-anchor", "start")
         .style("font-size", 10)
+        .style("font-family", "'Barlow Condensed', sans-serif")
         .style("fill", ({key}) => color(key))
         .attr("transform", function(d) {
-            return "translate(" + (margin.right) + "," + (y((d[0][0]+d[0][1])/2)) + ")";
+            return "translate(" + (margin.right-20) + "," + (y((d[0][0]+d[0][1])/2)) + ")";
         })
-        .text(({key}) => key)
+        .text(d => countryNameMap[d.key])
+
+
 
 
     function mouseClick(event, d) {
         // Remove the current graph
         d3.select('#steam-chart').selectAll('*').remove();
         d3.select('#back-button').style('display', 'block');
-        drawLineGraph(d.key);
+        drawLineGraph(data, d.key);
     }
 
-    function mouseOut() {
-        d3.select(this)
-            .style('fill-opacity', null)
-            .style('stroke', null)
-            .style('stroke-width', null);
-        svg.selectAll('path')
-            .style('fill-opacity', null);
-    }
-    function mouseOver() {
+
+    function mouseOver(event, d) {
 
         svg.selectAll('path')
             .style('fill-opacity', 0.5);
@@ -96,6 +98,21 @@ async function drawStreamGraph(){
             .style('fill-opacity', 1)
             .style('stroke', 'black')
             .style('stroke-width', '2');
+
+        svg.selectAll(`.label-${d.key}`)  // Select the text element with the corresponding class
+            .style('fill', 'black');
+    }
+
+    function mouseOut(event, d) {
+        d3.select(this)
+            .style('fill-opacity', null)
+            .style('stroke', null)
+            .style('stroke-width', null);
+        svg.selectAll('path')
+            .style('fill-opacity', null);
+
+        svg.selectAll('text')  // Reset the style of all text elements
+            .style('fill', ({key}) => color(key));
     }
 
     // Axes

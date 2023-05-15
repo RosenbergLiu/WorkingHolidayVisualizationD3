@@ -1,13 +1,12 @@
-async function drawLineGraph(key= null){
+async function drawLineGraph(data, key= null){
 
-    let data = await d3.csv("age.csv")
     let margin = {top: 20, right: 20, bottom: 50, left: 50};
     let container = d3.select("#steam-chart-container").node().getBoundingClientRect();
     let containerWidth = container.width;
 
     // Define width and height based on container dimensions and margins
     let width = containerWidth - margin.left - margin.right;
-    let height = 600 - margin.top - margin.bottom;
+    let height = 800 - margin.top - margin.bottom;
 
     let x = d3.scaleLinear()
         .domain(d3.extent(data, d => d.age))
