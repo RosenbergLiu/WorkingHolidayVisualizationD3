@@ -1,13 +1,16 @@
-d3.csv("age.csv").then(data => {
-    const margin = {top: 20, right: 20, bottom: 50, left: 50};
-    const container = d3.select("#steam-chart-container").node().getBoundingClientRect();
-    const containerWidth = container.width;
 
-    const width = containerWidth - margin.left - margin.right;
-    const height = 600 - margin.top - margin.bottom;
+async function drawStreamGraph(){
+
+    let data = await d3.csv("age.csv")
+    let margin = {top: 20, right: 20, bottom: 50, left: 50};
+    let container = d3.select("#steam-chart-container").node().getBoundingClientRect();
+    let containerWidth = container.width;
+
+    let width = containerWidth - margin.left - margin.right;
+    let height = 600 - margin.top - margin.bottom;
 
 
-    const keys = data.columns.slice(1);
+    let keys = data.columns.slice(1);
 
     let stackGen = d3.stack()
         .keys(keys)
@@ -26,27 +29,54 @@ d3.csv("age.csv").then(data => {
         ])
         .range([height - margin.bottom, margin.top]);
 
+
     let area = d3.area()
         .x(d => x(d.data.age))
         .y0(d => y(d[0]))
         .y1(d => y(d[1]))
         .curve(d3.curveCardinal);
 
+
+
     let color = d3.scaleOrdinal()
         .domain(keys)
         .range(d3.schemeTableau10);
 
 
-
-
-    const svg = d3.select("#steam-chart")
+    let svg = d3.select("#steam-chart")
         .attr("viewBox", [0, 0, width, height]);
 
-    svg.selectAll("path")
+
+    function mouseOut() {
+        d3.select(this)
+            .style('fill-opacity', null)
+            .style('stroke', null)
+            .style('stroke-width', null);
+        svg.selectAll('path')
+            .style('fill-opacity', null);
+    }
+
+    let paths = svg.selectAll("path")
         .data(series)
         .join("path")
         .attr("fill", ({key}) => color(key))
-        .attr("d", area);
+        .attr("d", area)
+        .on("mouseout", mouseOut)
+        .on('mouseover', function (d, i) {
+            d3.select(this)
+                .style('fill-opacity', 1)
+                .style('stroke', 'black')
+                .style('stroke-width', '2');
+
+            paths.filter((d, j) => i !== j)
+                .style('fill-opacity', 0.5);
+        })
+        .on('click', function (event, d) {   // Add 'event' parameter
+                                             // Remove the current graph
+            d3.select('#steam-chart').selectAll('*').remove();
+            d3.select('#back-button').style('display', 'block');
+            drawLineGraph(d.key);
+        });
 
     // Axes
     let xAxis = g => g
@@ -54,8 +84,7 @@ d3.csv("age.csv").then(data => {
         .call(d3.axisBottom(x).ticks(width / 80));
 
 
-
     svg.append("g")
         .call(xAxis);
 
-});
+}

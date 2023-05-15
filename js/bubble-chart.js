@@ -1,7 +1,7 @@
-d3.csv("data.csv").then(bubble);
 
+async function drawBubbleChart(){
 
-function bubble(data) {
+    const data = await d3.csv("data.csv")
     const margin = {top: 20, right: 20, bottom: 50, left: 50};
 
     const container = d3.select("#bubble-chart-container").node().getBoundingClientRect();
