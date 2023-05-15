@@ -123,7 +123,8 @@ def get_latest_record(dataframe):
 
 df = get_latest_record(df)
 
-age_df = df[df['Measure'].astype(str).str.contains('mean disposable')]
+age_df = df[df['Measure'].astype(str).str.contains('Poverty rate after taxes and transfers')]
+age_df = age_df[age_df['Measure'].astype(str).str.contains('Age group')]
 gini_df = df[df['Measure'] == 'Gini (disposable income, post taxes and transfers)']
 gini_df = gini_df[gini_df['AGE'] == 'TOT']
 age_df['year'] = '2019'
@@ -137,12 +138,13 @@ stack_df = age_df.pivot_table(index='age', columns='code', values='income')
 
 stack_df = stack_df.reset_index(drop=True)
 
-for column in stack_df:
+'''for column in stack_df:
     tot = stack_df[column].sum()
     ratio_set = []
     for row in stack_df[column]:
         ratio_set.append(row*10 / tot)
-    stack_df[column] = ratio_set
+    stack_df[column] = ratio_set'''
+
 
 stack_df.index = np.arange(0.5, len(stack_df) + 0.5, 1)
 
