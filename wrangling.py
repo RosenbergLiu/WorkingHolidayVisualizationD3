@@ -136,7 +136,6 @@ age_df = age_df[['code', 'age', 'income']]
 
 stack_df = age_df.pivot_table(index='age', columns='code', values='income')
 stack_df.index = [9, 22, 33, 46, 58, 71, 77]
-#stack_df = stack_df.reset_index(drop=True)
 
 '''for column in stack_df:
     tot = stack_df[column].sum()
@@ -146,7 +145,6 @@ stack_df.index = [9, 22, 33, 46, 58, 71, 77]
     stack_df[column] = ratio_set'''
 
 
-#stack_df.index = np.arange(0.5, len(stack_df) + 0.5, 1)
 
 
 stack_df.index.name = 'age'

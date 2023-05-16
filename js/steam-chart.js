@@ -38,11 +38,7 @@ async function drawStreamGraph(){
         .range([height - margin.bottom, margin.top]);
 
 
-    let area = d3.area()
-        .x(d => x(d.data.age))
-        .y0(d => y(d[0]))
-        .y1(d => y(d[0]))
-        .curve(d3.curveCardinal);
+
 
 
 
@@ -55,7 +51,11 @@ async function drawStreamGraph(){
         .append("svg")
         .attr("viewBox", [0, 0, width, height]);
 
-
+    let area = d3.area()
+        .x(d => x(d.data.age))
+        .y0(d => y(d[0]))
+        .y1(d => y(d[0]))
+        .curve(d3.curveCardinal);
 
 
     svg.selectAll("path")
