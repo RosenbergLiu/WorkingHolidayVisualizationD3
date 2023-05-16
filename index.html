@@ -25,6 +25,31 @@
 <body>
 
 
+<div class="card shadow" id="expenditure">
+    <div class="card-header">
+        <div class="row">
+            <h4 id="expenditure-header" class="col">Food and Health expenditure</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <div id="stack-bar-chart-container">
+            <div id="stack-bar-chart"></div>
+            <p class="placeholder-glow" id="stack-bar-chart-placeholder">
+                <span class="placeholder col-12 bg-primary"></span>
+                <span class="placeholder col-12 bg-secondary"></span>
+                <span class="placeholder col-12 bg-success"></span>
+                <span class="placeholder col-12 bg-danger"></span>
+                <span class="placeholder col-12 bg-warning"></span>
+                <span class="placeholder col-12 bg-info"></span>
+                <span class="placeholder col-12 bg-dark"></span>
+            </p>
+            <script>
+                drawStackBarGraph();
+            </script>
+        </div>
+    </div>
+</div>
+
 
 <div class="card shadow" id="gini">
     <div class="card-header">

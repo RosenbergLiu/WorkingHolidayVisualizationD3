@@ -37,11 +37,6 @@ async function drawStreamGraph(){
         ])
         .range([height - margin.bottom, margin.top]);
 
-
-
-
-
-
     let color = d3.scaleOrdinal()
         .domain(keys)
         .range(d3.schemeTableau10);

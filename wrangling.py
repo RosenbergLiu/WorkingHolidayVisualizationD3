@@ -106,7 +106,7 @@ cleaned_df.to_csv('cleaned_data/data.csv', index=None)
 
 
 
-#==================Poverty rate vs Age and GINI================================
+#==================Poverty rate vs Age================================
 df = pd.read_csv('original_data/IDD_06052023124920962.csv')
 df = df[df['Methodology'] == 'New income definition since 2012']
 
@@ -144,10 +144,14 @@ age_df.index.name = 'age'
 
 age_df.to_csv('cleaned_data/age.csv')
 
-#===========gini
-gini_df = df[df['Measure'] == 'Gini (disposable income, post taxes and transfers)']
+#===================gini==========================================
+gini_df = df[df['MEASURE'] == 'GINI']
+gini_df = gini_df[gini_df['DEFINITION'] == 'CURRENT']
 gini_df = gini_df[gini_df['AGE'] == 'TOT']
 gini_df = gini_df[['LOCATION', 'Value']]
-gini_df = gini_df.rename(columns={'LOCATION': 'code', 'Value': 'gini'})
+gini_df = gini_df.rename(columns={
+    'LOCATION': 'code',
+    'Value': 'gini'
+})
 
 gini_df.to_csv('cleaned_data/gini.csv', index=False)
