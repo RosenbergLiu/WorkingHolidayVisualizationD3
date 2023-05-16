@@ -1,4 +1,4 @@
-entity,code,year,working_hours,pophw,population,continent,health,income,income_p_hour,health_share,food_share
+entity,code,year,working_hours,productivity per hour,population,continent,health,income,income_p_hour,health_share,food_share
 Argentina,ARG,2000,1862.1362,20.869158,37.070772,South America,704.94592285,6430.93331567539,3.4535246754106335,0.10961798050862934,
 Argentina,ARG,2001,1811.1526,20.300793,37.480492,South America,671.36853027,6002.28904723084,3.314071408025387,0.11185208259501203,
 Argentina,ARG,2002,1710.0365,18.544622,37.885024,South America,222.64750671,1995.25886604374,1.166793145084178,0.11158828084872628,

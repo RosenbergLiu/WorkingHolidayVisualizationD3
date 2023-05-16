@@ -1,7 +1,9 @@
 
+// noinspection JSUnresolvedReference
+
 async function drawBubbleChart(){
 
-    let data = await d3.csv("data.csv")
+    let data = await d3.csv("cleaned_data/data.csv")
     let margin = {top: 20, right: 20, bottom: 50, left: 50};
 
     let container = d3.select("#bubble-chart-container").node().getBoundingClientRect();

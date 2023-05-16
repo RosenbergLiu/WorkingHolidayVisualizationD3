@@ -1,7 +1,7 @@
 
 async function drawStreamGraph(){
-    document.getElementById('income-age-header').innerHTML = 'Income in each age';
-    let data = await d3.csv("age.csv")
+    document.getElementById('poverty-rate-age-header').innerHTML = 'Poverty rate by Age';
+    let data = await d3.csv("cleaned_data/age.csv")
     data.forEach(function(d) {
         d.age = +d.age;
     });
@@ -117,7 +117,7 @@ async function drawStreamGraph(){
             .style('fill-opacity',1);
     }
 
-    function mouseOut(event, d) {
+    function mouseOut() {
         d3.select(this)
             .style('fill-opacity', null)
             .style('stroke', null)

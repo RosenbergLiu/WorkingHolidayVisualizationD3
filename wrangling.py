@@ -45,7 +45,7 @@ df = df.rename(columns={'Entity': 'entity',
                         'Year': 'year',
                         'Code': 'code',
                         'Annual working hours per worker': 'working_hours',
-                        'Productivity: output per hour worked': 'pophw',
+                        'Productivity: output per hour worked': 'productivity per hour',
                         'Population (historical estimates)': 'population',
                         'Continent': 'continent'
                         })
@@ -100,9 +100,13 @@ df['year'] = df['year'].astype(str)
 df['code'] = df['code'].astype(str)
 
 cleaned_df = pd.merge(cleaned_df, df, on=['code', 'year'], how='left')
-cleaned_df.to_csv('data.csv', index=None)
+cleaned_df.to_csv('cleaned_data/data.csv', index=None)
 
-# =====================
+# =========================================================================================
+
+
+
+#==================Poverty rate vs Age and GINI================================
 df = pd.read_csv('original_data/IDD_06052023124920962.csv')
 df = df[df['Methodology'] == 'New income definition since 2012']
 
@@ -125,8 +129,7 @@ df = get_latest_record(df)
 
 age_df = df[df['Measure'].astype(str).str.contains('Poverty rate after taxes and transfers')]
 age_df = age_df[age_df['Measure'].astype(str).str.contains('Age group')]
-gini_df = df[df['Measure'] == 'Gini (disposable income, post taxes and transfers)']
-gini_df = gini_df[gini_df['AGE'] == 'TOT']
+
 age_df['year'] = '2019'
 age_df = age_df.rename(columns={'LOCATION': 'code',
                                 'Measure': 'age',
@@ -134,20 +137,17 @@ age_df = age_df.rename(columns={'LOCATION': 'code',
                                 })
 age_df = age_df[['code', 'age', 'income']]
 
-stack_df = age_df.pivot_table(index='age', columns='code', values='income')
-stack_df.index = [9, 22, 33, 46, 58, 71, 77]
+age_df = age_df.pivot_table(index='age', columns='code', values='income')
+age_df.index = [9, 22, 33, 46, 58, 71, 77]
 
-'''for column in stack_df:
-    tot = stack_df[column].sum()
-    ratio_set = []
-    for row in stack_df[column]:
-        ratio_set.append(row*10 / tot)
-    stack_df[column] = ratio_set'''
+age_df.index.name = 'age'
 
+age_df.to_csv('cleaned_data/age.csv')
 
+#===========gini
+gini_df = df[df['Measure'] == 'Gini (disposable income, post taxes and transfers)']
+gini_df = gini_df[gini_df['AGE'] == 'TOT']
+gini_df = gini_df[['LOCATION', 'Value']]
+gini_df = gini_df.rename(columns={'LOCATION': 'code', 'Value': 'gini'})
 
-
-stack_df.index.name = 'age'
-
-stack_df.to_csv('age.csv')
-gini_df.to_csv('gini.csv')
+gini_df.to_csv('cleaned_data/gini.csv', index=False)

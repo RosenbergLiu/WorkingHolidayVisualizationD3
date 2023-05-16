@@ -1,6 +1,6 @@
 async function drawLineGraph(data, key= null){
     let country = await fetchCountryName(key);
-    document.getElementById('income-age-header').innerHTML = `Income in each age: ${country}`;
+    document.getElementById('poverty-rate-age-header').innerHTML = `Poverty rate by Age: ${country}`;
 
     let margin = {top: 20, right: 20, bottom: 50, left: 50};
     let container = d3.select("#steam-chart-container").node().getBoundingClientRect();
