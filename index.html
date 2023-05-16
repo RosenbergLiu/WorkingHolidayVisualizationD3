@@ -24,9 +24,12 @@
 <body>
 
 <div class="card shadow" id="income_age">
-
     <div class="card-header">
-        <h4>Income in each age group</h4>
+        <div class="row">
+            <h4 id="income-age-header" class="col">Income in each age</h4>
+            <button class="btn btn-primary col" id="back-to-steam" style="display: none;">Back to all countries</button>
+        </div>
+
     </div>
 
     <div class="card-body">
@@ -34,7 +37,7 @@
         <div id="steam-chart-container">
 
             <div id="steam-chart"></div>
-            <button class="btn btn-primary" id="back-to-steam" style="display: none;">Back to all countries</button>
+
             <p class="placeholder-glow" id="steam-chart-placeholder">
                 <span class="placeholder col-12 bg-primary"></span>
                 <span class="placeholder col-12 bg-secondary"></span>

@@ -1,8 +1,10 @@
 
 async function drawStreamGraph(){
-
+    document.getElementById('income-age-header').innerHTML = 'Income in each age';
     let data = await d3.csv("age.csv")
-
+    data.forEach(function(d) {
+        d.age = +d.age;
+    });
     let margin = {top: 20, right: 20, bottom: 50, left: 50};
     let container = d3.select("#steam-chart-container").node().getBoundingClientRect();
     let containerWidth = container.width;
@@ -39,7 +41,7 @@ async function drawStreamGraph(){
     let area = d3.area()
         .x(d => x(d.data.age))
         .y0(d => y(d[0]))
-        .y1(d => y(d[1]))
+        .y1(d => y(d[0]))
         .curve(d3.curveCardinal);
 
 
@@ -63,7 +65,14 @@ async function drawStreamGraph(){
         .attr("d", area)
         .on("mouseout", mouseOut)
         .on('mouseover', mouseOver)
-        .on('click', mouseClick);
+        .on('click', mouseClick)
+        .transition() // Start a transition
+        .duration(1000) // Set the duration to 1000 milliseconds
+        .attr("d", d3.area() // Use a new area generator for the transition
+            .x(d => x(d.data.age))
+            .y0(d => y(d[0]))
+            .y1(d => y(d[1]))
+            .curve(d3.curveCardinal));
 
 
 
@@ -129,6 +138,11 @@ async function drawStreamGraph(){
 
     svg.append("g")
         .call(xAxis);
-
+    svg.append("text")
+        .attr("class", "x label")
+        .attr("text-anchor", "end")
+        .attr("x", width)
+        .attr("y", height - 6)
+        .text("Age");
     d3.select('#steam-chart-placeholder').selectAll('*').remove();
 }

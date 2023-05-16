@@ -1,4 +1,6 @@
 async function drawLineGraph(data, key= null){
+    let country = await fetchCountryName(key);
+    document.getElementById('income-age-header').innerHTML = `Income in each age: ${country}`;
 
     let margin = {top: 20, right: 20, bottom: 50, left: 50};
     let container = d3.select("#steam-chart-container").node().getBoundingClientRect();
@@ -38,14 +40,27 @@ async function drawLineGraph(data, key= null){
     let xAxis = g => g
         .attr("transform", `translate(0,${height - margin.bottom})`)
         .call(d3.axisBottom(x).ticks(width / 80));
-
     let yAxis = g => g
         .attr("transform", `translate(${margin.left},0)`)
         .call(d3.axisLeft(y));
 
-    svg.append("g").call(xAxis);
-    svg.append("g").call(yAxis);
+    let xAxisGrid = d3.axisBottom(x)
+        .tickSize(-height)
+        .ticks(10); // Adjust for more or fewer lines
 
+    let yAxisGrid = d3.axisLeft(y)
+        .tickSize(-width)
+        .ticks(10); // Adjust for more or fewer lines
+
+    svg.append("g")
+        .call(xAxis)
+        .attr('class', 'x grid')
+        .call(xAxisGrid);
+
+    svg.append("g")
+        .call(yAxis)
+        .attr('class', 'y grid')
+        .call(yAxisGrid);
 
     d3.select('#back-to-steam').on('click', function () {
         // Remove the current graph
@@ -58,5 +73,6 @@ async function drawLineGraph(data, key= null){
         // Draw the streamgraph
         drawStreamGraph();
     });
+
 
 }
