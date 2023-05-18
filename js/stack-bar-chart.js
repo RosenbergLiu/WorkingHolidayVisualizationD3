@@ -1,15 +1,15 @@
-async function drawStackBarGraph() {
+async function drawStackBarGraph(sortBy = 'food_share') {
     // Load data
     let data = await d3.csv("cleaned_data/food-health.csv");
-    
+
     // Clearing placeholder
-    d3.select('#stack-bar-chart-placeholder').selectAll('*').remove();
+    d3.select('#stack-bar-chart').selectAll('*').remove();
 
     // Set dimensions and margins of the graph
     const margin = {top: 20, right: 30, bottom: 40, left: 90},
         width = 460 - margin.left - margin.right,
         height = 400 - margin.top - margin.bottom;
-    
+
     // Append svg object to the body of the page
     const svg = d3.select("#stack-bar-chart")
         .attr("width", width + margin.left + margin.right)
@@ -26,6 +26,9 @@ async function drawStackBarGraph() {
         .call(d3.axisBottom(x))
         .selectAll("text")
         .style("text-anchor", "end");
+
+    // Sort data
+    data.sort((a, b) => d3.descending(parseFloat(a[sortBy]), parseFloat(b[sortBy])));
 
     // Add Y axis
     const y = d3.scaleBand()
@@ -56,4 +59,9 @@ async function drawStackBarGraph() {
         .attr("width", d => x(d.health_share))
         .attr("height", y.bandwidth())
         .attr("fill", "#b369a2");
+
+    d3.select('#stack-bar-chart-placeholder').selectAll('*').remove();
+        
 }
+
+

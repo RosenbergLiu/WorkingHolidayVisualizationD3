@@ -29,11 +29,33 @@
 <div class="card shadow" id="expenditure">
     <div class="card-header">
         <div class="row">
-            <h4 id="expenditure-header" class="col">Food and Health expenditure</h4>
+            <h4 id="expenditure-header" class="col-6">Food and Health expenditure. Sort by: </h4>
+            <div class="btn-group col-6" role="group" aria-label="Sort By">
+                <input type="radio" class="btn-check" name="btnradio" id="sortFood" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="sortFood">Food Share</label>
+              
+                <input type="radio" class="btn-check" name="btnradio" id="sortHealth" autocomplete="off">
+                <label class="btn btn-outline-primary" for="sortHealth">Health Share</label>
+              </div>
+            <script>
+                // Attach event listeners
+document.getElementsByName("btnradio").forEach(radio => {
+    radio.addEventListener("change", (e) => {
+        if (e.target.id === "sortFood") {
+            drawStackBarGraph('food_share');
+        } else if (e.target.id === "sortHealth") {
+            drawStackBarGraph('health_share');
+        }
+    });
+});
+
+            </script>
         </div>
     </div>
     <div class="card-body">
         <div id="stack-bar-chart-container">
+            
+
             <svg id="stack-bar-chart"></svg>
             <p class="placeholder-glow" id="stack-bar-chart-placeholder">
                 <span class="placeholder col-12 bg-primary"></span>
