@@ -24,6 +24,55 @@
 </head>
 
 <body>
+    <div style="background-color: blanchedalmond;">
+        <br>
+        <h1 class="text-center">Working holiday destination comaprison</h1>
+        <br>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-9">
+            <h5>The project is an intuitive visualization tool 
+                which provides key indicators such as income, work hours, 
+                food and health expenditure, Gini index, population and poverty rate for each country
+                 to help you find the perfect destination for your working holiday.</h5>
+        </div>
+        <div class="col-2" style="background-color: #eee;">
+            <p>Name: Xiangyu Liu</p>
+            <p>Student Number: 27503410</p>
+        </div>
+    </div>
+    <h5>These factors are not merely statistics, 
+        but critical elements that directly impact 
+        the decision-making process of your work holiday experience:</h5>
+    <p>Income: The average income in a country gives you a realistic expectation of 
+        what you might earn while working there. This can significantly influence your 
+        financial planning and lifestyle during your stay.
+    </p>
+    <p>
+        Work Hours: This factor reveals the typical work-life balance in each country. 
+        It helps you evaluate if a country's work culture aligns with your personal and professional goals.
+    </p>
+    <p>
+        Food Expenditure: By understanding the typical food costs in a country, 
+        you can better prepare for daily expenses and manage your budget effectively.
+    </p>
+    <p>
+        Health Expenditure: This element gives you an idea of the health costs you might incur during your stay. 
+        Countries with lower health expenditure could be more appealing if you want to minimize your overall expenses.
+    </p>
+    <p>
+        Gini Index: The Gini coefficient is a measure of inequality within a country. A high Gini coefficient indicates a high degree of income inequality. 
+        Understanding this can help you gauge the economic landscape and social stability of your potential destination.
+    </p>
+    <p>
+        Population: The size of a country's population can influence social opportunities to job diversity and job hunting. 
+        It can also hint at the level of urbanization and cultural diversity.</p>
+
+
+        
+
+
 
 
 <div class="card shadow" id="expenditure">
@@ -38,14 +87,13 @@
                 <label class="btn btn-outline-primary" for="sortHealth">Health Share</label>
               </div>
             <script>
-                // Attach event listeners
-document.getElementsByName("btnradio").forEach(radio => {
-    radio.addEventListener("change", (e) => {
-        if (e.target.id === "sortFood") {
-            drawStackBarGraph('food_share');
-        } else if (e.target.id === "sortHealth") {
-            drawStackBarGraph('health_share');
-        }
+                document.getElementsByName("btnradio").forEach(radio => {
+                    radio.addEventListener("change", (e) => {
+                        if (e.target.id === "sortFood") {
+                            drawStackBarGraph('food_share');
+                        } else if (e.target.id === "sortHealth") {
+                            drawStackBarGraph('health_share');
+                        }
     });
 });
 
