@@ -100,7 +100,9 @@ df['year'] = df['year'].astype(str)
 df['code'] = df['code'].astype(str)
 
 cleaned_df = pd.merge(cleaned_df, df, on=['code', 'year'], how='left')
+cleaned_df['food_share'] = cleaned_df['food_share']/100
 cleaned_df.to_csv('cleaned_data/data.csv', index=None)
+
 
 # =========================================================================================
 
@@ -155,3 +157,13 @@ gini_df = gini_df.rename(columns={
 })
 
 gini_df.to_csv('cleaned_data/gini.csv', index=False)
+
+
+
+# =====================food and health==========================
+
+df = pd.read_csv('cleaned_data/data.csv')
+df.dropna(subset=['food_share'], inplace=True)
+print(df.head())
+fh_df = df[['entity','code','health_share','food_share']]
+fh_df.to_csv('cleaned_data/food-health.csv',index=False)
