@@ -30,96 +30,196 @@
         <br>
     </div>
     <br>
-    <div class="row">
-        <div class="col-9">
-            <h5>The project is an intuitive visualization tool 
-                which provides key indicators such as income, work hours, 
-                food and health expenditure, Gini index, population and poverty rate for each country
-                 to help you find the perfect destination for your working holiday.</h5>
-        </div>
-        <div class="col-2" style="background-color: #eee;">
-            <p>Name: Xiangyu Liu</p>
-            <p>Student Number: 27503410</p>
-        </div>
-    </div>
-    <h5>These factors are not merely statistics, 
-        but critical elements that directly impact 
-        the decision-making process of your work holiday experience:</h5>
-    <p>Income: The average income in a country gives you a realistic expectation of 
-        what you might earn while working there. This can significantly influence your 
-        financial planning and lifestyle during your stay.
-    </p>
-    <p>
-        Work Hours: This factor reveals the typical work-life balance in each country. 
-        It helps you evaluate if a country's work culture aligns with your personal and professional goals.
-    </p>
-    <p>
-        Food Expenditure: By understanding the typical food costs in a country, 
-        you can better prepare for daily expenses and manage your budget effectively.
-    </p>
-    <p>
-        Health Expenditure: This element gives you an idea of the health costs you might incur during your stay. 
-        Countries with lower health expenditure could be more appealing if you want to minimize your overall expenses.
-    </p>
-    <p>
-        Gini Index: The Gini coefficient is a measure of inequality within a country. A high Gini coefficient indicates a high degree of income inequality. 
-        Understanding this can help you gauge the economic landscape and social stability of your potential destination.
-    </p>
-    <p>
-        Population: The size of a country's population can influence social opportunities to job diversity and job hunting. 
-        It can also hint at the level of urbanization and cultural diversity.</p>
-
-
-        
-
-
-
-
-<div class="card shadow" id="expenditure">
-    <div class="card-header">
+    <div class="page-body">
         <div class="row">
-            <h4 id="expenditure-header" class="col-6">Food and Health expenditure. Sort by: </h4>
-            <div class="btn-group col-6" role="group" aria-label="Sort By">
-                <input type="radio" class="btn-check" name="btnradio" id="sortFood" autocomplete="off" checked>
-                <label class="btn btn-outline-primary" for="sortFood">Food Share</label>
-              
-                <input type="radio" class="btn-check" name="btnradio" id="sortHealth" autocomplete="off">
-                <label class="btn btn-outline-primary" for="sortHealth">Health Share</label>
-              </div>
-            <script>
-                document.getElementsByName("btnradio").forEach(radio => {
-                    radio.addEventListener("change", (e) => {
-                        if (e.target.id === "sortFood") {
-                            drawStackBarGraph('food_share');
-                        } else if (e.target.id === "sortHealth") {
-                            drawStackBarGraph('health_share');
-                        }
-    });
-});
-
-            </script>
+            <div class="col-8">
+                <h5>The project is an intuitive visualization tool 
+                    which provides key indicators such as income, work hours, 
+                    food and health expenditure, Gini index, population and poverty rate for each country
+                     to help you find the perfect destination for your working holiday.</h5>
+            </div>
+            <div class="col-3 card" style="background-color: #eee;">
+                <p>Name: Xiangyu Liu</p>
+                <p>Student Number: 27503410</p>
+            </div>
         </div>
+        <h5>These factors are not merely statistics, 
+            but critical elements that directly impact 
+            the decision-making process of your work holiday experience:</h5>
+        <div style="margin-left: 50px; margin-right: 50px;">
+            <p>Income: The average income in a country gives you a realistic expectation of 
+                what you might earn while working there. This can significantly influence your 
+                financial planning and lifestyle during your stay.</p>
+            <p>
+                Work Hours: This factor reveals the typical work-life balance in each country. 
+                It helps you evaluate if a country's work culture aligns 
+                with your personal and professional goals.</p>
+            <p>
+                Food Expenditure: By understanding the typical food costs in a country, 
+                you can better prepare for daily expenses and manage your budget effectively.</p>
+            <p>
+                Health Expenditure: This element gives you an idea of the health costs 
+                you might incur during your stay. 
+                Countries with lower health expenditure could be more appealing if 
+                you want to minimize your overall expenses.</p>
+            <p>
+                Gini Index: The Gini coefficient is a measure of inequality within a country. 
+                A high Gini coefficient indicates a high degree of income inequality. 
+                Understanding this can help you gauge the economic landscape and 
+                social stability of your potential destination.</p>
+            <p>
+                Population: The size of a country's population can influence social 
+                opportunities to job diversity and job hunting. 
+                It can also hint at the level of urbanization and cultural diversity.</p>
+            <p>
+                Poverty Rate: The poverty rate of a country is a key indicator of the 
+                overall economic health and standard of living. A high poverty rate might suggest
+                 limited job opportunities, poor infrastructure, and potential social instability, 
+                 which are vital considerations for anyone planning to live and work in a foreign country.</p>
+    
+        </div>
+        
+    
+        <h5>And at the end. A visualization would combine and compare all those factors together.</h5>
+    
+
     </div>
-    <div class="card-body">
-        <div id="stack-bar-chart-container">
+    
+
+    <div style="background-color:aqua">
+        <br>
+        <h2 class="text-center">Income VS Working hours</h2>
+        <br>
+    </div>
+    <br>
+    <div class="page-body">
+        <h3 style="margin-left: 40px;">Earning Power vs Time Spent: An Analysis of Hourly Income and Annual Work Hours</h3>
+        <p style="margin-left:50px; margin-right: 50px;">During our first section of our exploration, we focus on the relationship between the income per hour worked 
+            and the number of hours worked annually, both expressed in US dollars. You will gain a unique insight into the 
+            relationship between income and the amount of time it takes to earn it in different countries in this visualization.
+    
+            Here, we will explore the dynamics of work and pay throughout the world. Understanding these parameters is
+             crucial since they affect your earning potential as well as your work-life balance during your working holiday. 
+             Using this analysis, you can see where your work hours are most valuable, and how much of your time is devoted to them.
             
-
-            <svg id="stack-bar-chart"></svg>
-            <p class="placeholder-glow" id="stack-bar-chart-placeholder">
-                <span class="placeholder col-12 bg-primary"></span>
-                <span class="placeholder col-12 bg-secondary"></span>
-                <span class="placeholder col-12 bg-success"></span>
-                <span class="placeholder col-12 bg-danger"></span>
-                <span class="placeholder col-12 bg-warning"></span>
-                <span class="placeholder col-12 bg-info"></span>
-                <span class="placeholder col-12 bg-dark"></span>
-            </p>
-            <script>
-                drawStackBarGraph();
-            </script>
+            Ideally, you would earn a good income while enjoying ample leisure time to explore your new surroundings 
+            while on a working holiday. As a result, this analysis can help you decide where to maximize both your earning potential and your holiday experience.
+            
+            Our goal is to offer you a new perspective in your search for the perfect work holiday destination by 
+            comparing the hourly income and working hours per worker.
+        </p>
+    </div>
+    
+    <div class="card shadow" id="hour_income">
+        <div class="card-header">
+            <h4>Income per hour worked VS Annual working hours per worker in USD</h4>
+        </div>
+        <div class="card-body">
+            <div id="bubble-chart-container">
+                <div id="bubble-chart"></div>
+                <p class="placeholder-glow" id="bubble-chart-placeholder">
+                    <span class="placeholder col-12 bg-primary"></span>
+                    <span class="placeholder col-12 bg-secondary"></span>
+                    <span class="placeholder col-12 bg-success"></span>
+                    <span class="placeholder col-12 bg-danger"></span>
+                    <span class="placeholder col-12 bg-warning"></span>
+                    <span class="placeholder col-12 bg-info"></span>
+                    <span class="placeholder col-12 bg-dark"></span>
+                </p>
+                <script>
+                    drawBubbleChart();
+                </script>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="text-center">
+                Year: <label for="year-slider" class="form-label" id="year-display">2019</label>
+                <div class="card container">
+                    <input type="range" class="form-range" id="year-slider" 
+                    min="2000" max="2019" value="2019" step="1">
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <br>
+    <br>
+    
+    
+    <div style="background-color:aqua">
+        <br>
+        <h2 class="text-center">Health and food expenditure</h2>
+        <br>
+    </div>
+    <br>
+    <div class="row">
+    <div class="card shadow col-5" id="expenditure">
+        <div class="card-header">
+            <h4>Food and Health expenditure divide by income</h4>
+            <div class="row">
+                <h4 id="expenditure-header" class="col-4 text-right">Sort by: </h4>
+                <div class="btn-group col-8" role="group" aria-label="Sort By">
+                    <input type="radio" class="btn-check" name="btnradio" id="sortFood" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="sortFood">Food</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="sortHealth" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="sortHealth">Health</label>
+                  </div>
+                <script>
+                    document.getElementsByName("btnradio").forEach(radio => {
+                        radio.addEventListener("change", (e) => {
+                            if (e.target.id === "sortFood") {
+                                drawStackBarGraph('food_share');
+                            } else if (e.target.id === "sortHealth") {
+                                drawStackBarGraph('health_share');
+                            }
+                        });
+                    });
+    
+                </script>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="stack-bar-chart-container">
+                <svg id="stack-bar-chart"></svg>
+                <p class="placeholder-glow" id="stack-bar-chart-placeholder">
+                    <span class="placeholder col-12 bg-primary"></span>
+                    <span class="placeholder col-12 bg-secondary"></span>
+                    <span class="placeholder col-12 bg-success"></span>
+                    <span class="placeholder col-12 bg-danger"></span>
+                    <span class="placeholder col-12 bg-warning"></span>
+                    <span class="placeholder col-12 bg-info"></span>
+                    <span class="placeholder col-12 bg-dark"></span>
+                </p>
+                <script>
+                    drawStackBarGraph();
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+            <h3>Living and Wellbeing: Unpacking the Food and Health Expenditure Rates</h3>
+            <p>
+                This subtopic focuses on the intricacies of food and health expenditure 
+                rates across the globe. As a result of this valuable information, you can 
+                plan your working holiday experience in advance by anticipating how much it 
+                will cost to live and how well it will be.
+                Planning your working holiday requires an understanding of 
+                food expenditures. In addition to enabling you to budget more effectively, 
+                it ensures that you can afford to enjoy the local cuisine and lifestyle while you are there. 
+                It provides you with a clear picture of the expected daily costs of living. 
+                When it comes to health expenditure, however, knowing what you might expect to spend can help 
+                you prepare for any eventuality during your stay. 
+                In combinat on, these two factors can have a significant 
+                impact on your working holiday experience and quality of life. /n
+                This information will hopefully help you gain a comprehensive understanding of the 
+                financial obligations associated with living abroad. In order to have a successful working 
+                holiday, you need to understand and manage your expenses, not just your income. Let's 
+                learn more about this to better prepare for your trip.
+            </p>
+        </div>
+    </div>
+
+
 
 
 <div class="card shadow" id="gini">
@@ -181,36 +281,7 @@
 
 
 
-<div class="card shadow" id="hour_income">
-    <div class="card-header">
-        <h4>Income per hour worked VS Annual working hours per worker in USD</h4>
-    </div>
-    <div class="card-body">
-        <div id="bubble-chart-container">
-            <div id="bubble-chart"></div>
-            <p class="placeholder-glow" id="bubble-chart-placeholder">
-                <span class="placeholder col-12 bg-primary"></span>
-                <span class="placeholder col-12 bg-secondary"></span>
-                <span class="placeholder col-12 bg-success"></span>
-                <span class="placeholder col-12 bg-danger"></span>
-                <span class="placeholder col-12 bg-warning"></span>
-                <span class="placeholder col-12 bg-info"></span>
-                <span class="placeholder col-12 bg-dark"></span>
-            </p>
-            <script>
-                drawBubbleChart();
-            </script>
-        </div>
-    </div>
-    <div class="card-footer">
-        <div class="text-center">
-            Year: <label for="year-slider" class="form-label" id="year-display">2019</label>
-            <div class="card container">
-                <input type="range" class="form-range" id="year-slider" min="2000" max="2019" value="2019" step="1">
-            </div>
-        </div>
-    </div>
-</div>
+
 
 
 

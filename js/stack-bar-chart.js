@@ -8,7 +8,7 @@ async function drawStackBarGraph(sortBy = 'food_share') {
     // Set dimensions and margins of the graph
     const margin = {top: 20, right: 30, bottom: 40, left: 90},
         width = 460 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+        height = 800 - margin.top - margin.bottom;
 
     // Append svg object to the body of the page
     const svg = d3.select("#stack-bar-chart")
@@ -28,7 +28,7 @@ async function drawStackBarGraph(sortBy = 'food_share') {
         .style("text-anchor", "end");
 
     // Sort data
-    data.sort((a, b) => d3.descending(parseFloat(a[sortBy]), parseFloat(b[sortBy])));
+    data.sort((a, b) => d3.ascending(parseFloat(a[sortBy]), parseFloat(b[sortBy])));
 
     // Add Y axis
     const y = d3.scaleBand()
@@ -37,6 +37,7 @@ async function drawStackBarGraph(sortBy = 'food_share') {
         .padding(.1);
     svg.append("g")
         .call(d3.axisLeft(y));
+
 
     // Add bars for food_share
     svg.selectAll("foodBar")

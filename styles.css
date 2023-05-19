@@ -3,9 +3,10 @@
 }
 
 .card {
-    margin-left: 4%;
-    margin-right: 4%;
-    margin-top: 2%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .grid line {
@@ -19,5 +20,11 @@
 }
 
 h5 {
-    margin-left: 20px;
+    margin-left: 40px;
 }
+
+.page-body {
+    margin-left: 80px;
+    margin-right: 120px;
+}
+
