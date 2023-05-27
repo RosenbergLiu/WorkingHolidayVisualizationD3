@@ -3,13 +3,6 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
-        <entry key="\age.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="\cleaned_data\age.csv">
           <value>
             <Attribute>
@@ -25,13 +18,6 @@
           </value>
         </entry>
         <entry key="\cleaned_data\gini.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
-        <entry key="\gini.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

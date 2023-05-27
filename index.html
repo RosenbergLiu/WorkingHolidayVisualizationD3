@@ -88,10 +88,11 @@
 
     <div style="background-color:aqua">
         <br>
-        <h2 class="text-center">Income VS Working hours</h2>
+            <h2 class="text-center">Income VS Working hours</h2>
         <br>
     </div>
     <br>
+
     <div class="page-body">
         <h3 style="margin-left: 40px;">Earning Power vs Time Spent: An Analysis of Hourly Income and Annual Work Hours</h3>
         <p style="margin-left:50px; margin-right: 50px;">During our first section of our exploration, we focus on the relationship between the income per hour worked 
@@ -109,7 +110,9 @@
             comparing the hourly income and working hours per worker.
         </p>
     </div>
-    
+    <div class="alert alert-warning text-center" role="alert" style="margin-left:10%; width:auto; margin-right:10%">
+        You can hover on any bubble to see the detailed data. You can also drag the year slider to see different year's data and visualize the trend. You can also click the continent legend to filter them
+    </div>
     <div class="card shadow" id="hour_income">
         <div class="card-header">
             <h4>Income per hour worked VS Annual working hours per worker in USD</h4>
@@ -152,51 +155,57 @@
         <br>
     </div>
     <br>
-    <div class="row">
-    <div class="card shadow col-5" id="expenditure">
-        <div class="card-header">
-            <h4>Food and Health expenditure divide by income</h4>
-            <div class="row">
-                <h4 id="expenditure-header" class="col-4 text-right">Sort by: </h4>
-                <div class="btn-group col-8" role="group" aria-label="Sort By">
-                    <input type="radio" class="btn-check" name="btnradio" id="sortFood" autocomplete="off" checked>
-                    <label class="btn btn-outline-primary" for="sortFood">Food</label>
-                  
-                    <input type="radio" class="btn-check" name="btnradio" id="sortHealth" autocomplete="off">
-                    <label class="btn btn-outline-primary" for="sortHealth">Health</label>
-                  </div>
-                <script>
-                    document.getElementsByName("btnradio").forEach(radio => {
-                        radio.addEventListener("change", (e) => {
-                            if (e.target.id === "sortFood") {
-                                drawStackBarGraph('food_share');
-                            } else if (e.target.id === "sortHealth") {
-                                drawStackBarGraph('health_share');
-                            }
-                        });
-                    });
-    
-                </script>
-            </div>
-        </div>
-        <div class="card-body">
-            <div id="stack-bar-chart-container">
-                <svg id="stack-bar-chart"></svg>
-                <p class="placeholder-glow" id="stack-bar-chart-placeholder">
-                    <span class="placeholder col-12 bg-primary"></span>
-                    <span class="placeholder col-12 bg-secondary"></span>
-                    <span class="placeholder col-12 bg-success"></span>
-                    <span class="placeholder col-12 bg-danger"></span>
-                    <span class="placeholder col-12 bg-warning"></span>
-                    <span class="placeholder col-12 bg-info"></span>
-                    <span class="placeholder col-12 bg-dark"></span>
-                </p>
-                <script>
-                    drawStackBarGraph();
-                </script>
-            </div>
-        </div>
+    <div class="alert alert-warning text-center" role="alert" style="margin-left:5%; width:auto; margin-right:60%">
+        You can sort by food and health expenditure by click the button.
     </div>
+    <div class="row">
+        <div class="col-5" style="margin-left:40px">
+            <div class="card shadow" id="expenditure">
+                <div class="card-header">
+                    <h4>Food and Health expenditure divide by income</h4>
+                    <div class="row">
+                        <h4 id="expenditure-header" class="col-4 text-right">Sort by: </h4>
+                        <div class="btn-group col-6" role="group" aria-label="Sort By">
+                            <input type="radio" class="btn-check" name="btnradio" id="sortFood" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="sortFood">Food</label>
+
+                            <input type="radio" class="btn-check" name="btnradio" id="sortHealth" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="sortHealth">Health</label>
+                        </div>
+                        <script>
+                            document.getElementsByName("btnradio").forEach(radio => {
+                                radio.addEventListener("change", (e) => {
+                                    if (e.target.id === "sortFood") {
+                                        drawStackBarGraph('food_share');
+                                    } else if (e.target.id === "sortHealth") {
+                                        drawStackBarGraph('health_share');
+                                    }
+                                });
+                            });
+
+                        </script>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="stack-bar-chart-container">
+                        <svg id="stack-bar-chart"></svg>
+                        <p class="placeholder-glow" id="stack-bar-chart-placeholder">
+                            <span class="placeholder col-12 bg-primary"></span>
+                            <span class="placeholder col-12 bg-secondary"></span>
+                            <span class="placeholder col-12 bg-success"></span>
+                            <span class="placeholder col-12 bg-danger"></span>
+                            <span class="placeholder col-12 bg-warning"></span>
+                            <span class="placeholder col-12 bg-info"></span>
+                            <span class="placeholder col-12 bg-dark"></span>
+                        </p>
+                        <script>
+                            drawStackBarGraph();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <div class="col-5">
             <h3>Living and Wellbeing: Unpacking the Food and Health Expenditure Rates</h3>
             <p>
@@ -222,72 +231,116 @@
 
 
 
-<div style="background-color:aqua">
+
+
+    <div style="background-color:aqua">
+        <br>
+        <h2 class="text-center">Inequality</h2>
+        <br>
+    </div>
     <br>
-    <h2 class="text-center">Inequality</h2>
-    <br>
-</div>
-<div class="row">
-    <div class="col-5">
-        aaaa
-    </div>
-    <div class="col-7">
-        <div class="card shadow" id="gini">
-            <div class="card-header">
-                <div class="row">
-                    <h4 id="gini-header" class="col">GINI Coefficient</h4>
-                </div>
-            </div>
-            <div class="card-body">
-                <div id="radial-bar-chart-container">
-                    <div id="radial-bar-chart"></div>
-                    <p class="placeholder-glow" id="radial-bar-chart-placeholder">
-                        <span class="placeholder col-12 bg-primary"></span>
-                        <span class="placeholder col-12 bg-secondary"></span>
-                        <span class="placeholder col-12 bg-success"></span>
-                        <span class="placeholder col-12 bg-danger"></span>
-                        <span class="placeholder col-12 bg-warning"></span>
-                        <span class="placeholder col-12 bg-info"></span>
-                        <span class="placeholder col-12 bg-dark"></span>
-                    </p>
-                    <script>
-                        drawRadialBarGraph();
-                    </script>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-<div class="card shadow" id="poverty-rate-age">
-    <div class="card-header">
-        <div class="row">
-            <h4 id="poverty-rate-age-header" class="col"></h4>
-            <button class="btn btn-primary col" id="back-to-steam" style="display: none;">Back to all countries</button>
-        </div>
-    </div>
-    <div class="card-body">
-        <div id="steam-chart-container">
-            <div id="steam-chart"></div>
-            <p class="placeholder-glow" id="steam-chart-placeholder">
-                <span class="placeholder col-12 bg-primary"></span>
-                <span class="placeholder col-12 bg-secondary"></span>
-                <span class="placeholder col-12 bg-success"></span>
-                <span class="placeholder col-12 bg-danger"></span>
-                <span class="placeholder col-12 bg-warning"></span>
-                <span class="placeholder col-12 bg-info"></span>
-                <span class="placeholder col-12 bg-dark"></span>
+    <div class="row">
+        <div class="col-5">
+            <h3 style="margin-left:40px">Equality and Stability: A Closer Look at the Gini Coefficient</h3>
+            <p style="margin-left:40px">
+                This section of report ventures into the realm of economic equality by scrutinizing the Gini coefficient of different countries.
+                This metric, often overlooked, can provide a profound understanding of a nation's income distribution and by extension, its societal stability and living conditions.
+                The Gini coefficient, ranging from 0 to 1, is a measure of inequality where 0 represents perfect equality and 1 represents extreme inequality. It provides a snapshot of how evenly income is distributed among residents of a country. This knowledge is essential because countries with high income inequality often face social and economic challenges, which might not be immediately apparent to a visitor.
+                Furthermore, the Gini coefficient can also hint at the potential lifestyle and opportunities you may encounter in your chosen destination. For example, countries with a lower Gini coefficient might offer a more even playing field and a stable societal structure, which can contribute to a more secure and predictable working holiday experience.
+                In this section, we aim to underscore the importance of economic equality in your working holiday decision-making process. By understanding the income distribution in each potential destination, you can make a well-informed choice that aligns with your personal values and aspirations. Let's delve deeper into this crucial metric and uncover the economic fabric of your prospective destinations.
             </p>
-            <script>
-                drawStreamGraph();
-            </script>
+        </div>
+        <div class="col-6">
+            <div class="card shadow" id="gini">
+                <div class="card-header">
+                    <div class="row">
+                        <h4 id="gini-header" class="col">GINI Coefficient</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="radial-bar-chart-container">
+                        <div id="radial-bar-chart"></div>
+                        <p class="placeholder-glow" id="radial-bar-chart-placeholder">
+                            <span class="placeholder col-12 bg-primary"></span>
+                            <span class="placeholder col-12 bg-secondary"></span>
+                            <span class="placeholder col-12 bg-success"></span>
+                            <span class="placeholder col-12 bg-danger"></span>
+                            <span class="placeholder col-12 bg-warning"></span>
+                            <span class="placeholder col-12 bg-info"></span>
+                            <span class="placeholder col-12 bg-dark"></span>
+                        </p>
+                        <script>
+                            drawRadialBarGraph();
+                        </script>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+
+
+
+    <div style="background-color:aqua">
+        <br>
+        <h2 class="text-center">Poverty</h2>
+        <br>
+    </div>
+    <br>
+
+
+    <div class="page-body">
+        <h3 style="margin-left:40px">Demographic Poverty Analysis: Delving into the Poor Trap Across Age Groups</h3>
+        <p style="margin-left:40px">
+            The fourth section of our report shifts focus to a sobering yet essential aspect of global economics: poverty,
+            particularly as it relates to age. Our goal is to highlight the percentage of the population that
+            falls into the 'poor trap' as defined by Drs. Abhijit V. Banerjee and Esther Duflo.
+            The poor trap, according to Banerjee and Duflo, refers to a situation where an individual's income falls
+            below a certain critical point, leading to a cycle of increasing poverty until reaching a 'poor stable point'.
+            This concept helps illuminate the severity of income inequality and the structural
+            challenges many people face in escaping poverty.
+            In the context of your working holiday, understanding the prevalence of the poor trap in different
+            countries can be enlightening. It offers insights into the broader social and economic realities of
+            potential destinations. This understanding can help you make an informed choice not just
+            based on personal comfort and opportunities, but also guided by social awareness and empathy.
+            In this section, we'll break down the data on poverty across different age groups, painting a clearer
+            picture of how the poor trap manifests across various stages of life. By shedding light on this critical
+            social issue, we aim to enrich your perspective on your potential destinations and contribute to a more
+            socially aware choice. Let's navigate these complex realities together, enhancing your understanding of
+            the global landscape of poverty.
+        </p>
+    </div>
+
+    <div class="alert alert-warning text-center" role="alert" style="margin-left:20%; width:auto; margin-right:20%">
+        You can click any area to show the detail line chart of a single country
+    </div>
+
+    <div class="card shadow" id="poverty-rate-age">
+        <div class="card-header">
+            <div class="row">
+                <h4 id="poverty-rate-age-header" class="col"></h4>
+                <button class="btn btn-primary col" id="back-to-steam" style="display: none;">Back to all countries</button>
+            </div>
+        </div>
+        <div class="card-body">
+            <div id="steam-chart-container">
+                <div id="steam-chart"></div>
+                <p class="placeholder-glow" id="steam-chart-placeholder">
+                    <span class="placeholder col-12 bg-primary"></span>
+                    <span class="placeholder col-12 bg-secondary"></span>
+                    <span class="placeholder col-12 bg-success"></span>
+                    <span class="placeholder col-12 bg-danger"></span>
+                    <span class="placeholder col-12 bg-warning"></span>
+                    <span class="placeholder col-12 bg-info"></span>
+                    <span class="placeholder col-12 bg-dark"></span>
+                </p>
+                <script>
+                    drawStreamGraph();
+                </script>
+            </div>
+        </div>
+    </div>
+
+
 
 
 
