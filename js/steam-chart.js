@@ -1,4 +1,3 @@
-
 async function drawStreamGraph(){
     document.getElementById('poverty-rate-age-header').innerHTML = 'Poverty rate by Age';
     let data = await d3.csv("cleaned_data/age.csv")
@@ -139,5 +138,7 @@ async function drawStreamGraph(){
         .attr("x", width)
         .attr("y", height - 6)
         .text("Age");
+
+        
     d3.select('#steam-chart-placeholder').selectAll('*').remove();
 }

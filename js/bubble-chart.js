@@ -1,6 +1,3 @@
-
-// noinspection JSUnresolvedReference
-
 async function drawBubbleChart(){
 
     let data = await d3.csv("cleaned_data/data.csv")

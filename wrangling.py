@@ -164,6 +164,30 @@ gini_df.to_csv('cleaned_data/gini.csv', index=False)
 
 df = pd.read_csv('cleaned_data/data.csv')
 df.dropna(subset=['food_share'], inplace=True)
-print(df.head())
 fh_df = df[['entity','code','health_share','food_share']]
 fh_df.to_csv('cleaned_data/food-health.csv',index=False)
+
+#  =====================Everything===========================
+
+df=df[['entity', 'code', 'working_hours', 'population', 'income_p_hour', 'health_share', 'food_share']]
+
+df = pd.merge(df, gini_df, on=['code'], how='left')
+df.dropna(inplace=True)
+
+
+'''
+df['working_hours'] = 1/df['working_hours']
+df['health_share'] = 1/df['health_share']
+df['food_share'] = 1/df['food_share']
+df['gini'] = 1/df['gini']
+
+
+'''
+
+df['population'] = 1/df['population']
+df['income_p_hour'] = 1/df['income_p_hour']
+
+
+
+print(df.head())
+df.to_csv('cleaned_data/summary.csv', index=False)
