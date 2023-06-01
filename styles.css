@@ -1,3 +1,14 @@
+#checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.form-check {
+    width: 20%;  /* adjust this percentage to control the number of checkboxes per line */
+    padding: 5px;
+}
+
 #year-display {
     font-size: x-large;
 }
