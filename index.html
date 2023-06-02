@@ -219,7 +219,7 @@
                 When it comes to health expenditure, however, knowing what you might expect to spend can help 
                 you prepare for any eventuality during your stay. 
                 In combinat on, these two factors can have a significant 
-                impact on your working holiday experience and quality of life. /n
+                impact on your working holiday experience and quality of life.
                 This information will hopefully help you gain a comprehensive understanding of the 
                 financial obligations associated with living abroad. In order to have a successful working 
                 holiday, you need to understand and manage your expenses, not just your income. Let's 
@@ -355,40 +355,52 @@
         <br>
     </div>
     <br>
+    <div class="row">
+        <div class="col-6">
+            <div class="card shadow" id="summary">
+                <div class="card-header">
+                    <div class="row">
+                        <h4 id="summary-header" class="col">Summary</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="radar-chart-container">
+                        <div id="radar-chart"></div>
+                        <p class="placeholder-glow" id="radar-chart-placeholder">
+                            <span class="placeholder col-12 bg-primary"></span>
+                            <span class="placeholder col-12 bg-secondary"></span>
+                            <span class="placeholder col-12 bg-success"></span>
+                            <span class="placeholder col-12 bg-danger"></span>
+                            <span class="placeholder col-12 bg-warning"></span>
+                            <span class="placeholder col-12 bg-info"></span>
+                            <span class="placeholder col-12 bg-dark"></span>
+                        </p>
+                        <div id="checkboxes-container" class="row"></div>
+                    </div>
+                </div>
+                <div class="card-footer">
 
-    <div class="card shadow" id="summary">
-        <div class="card-header">
-            <div class="row">
-                <h4 id="summary-header" class="col"></h4>
+                </div>
+                <script>
+                    drawRadarGraph();
+                </script>
             </div>
         </div>
-        <div class="card-body">
-            <div id="radar-chart-container">
-                <div id="radar-chart"></div>
-                <p class="placeholder-glow" id="radar-chart-placeholder">
-                    <span class="placeholder col-12 bg-primary"></span>
-                    <span class="placeholder col-12 bg-secondary"></span>
-                    <span class="placeholder col-12 bg-success"></span>
-                    <span class="placeholder col-12 bg-danger"></span>
-                    <span class="placeholder col-12 bg-warning"></span>
-                    <span class="placeholder col-12 bg-info"></span>
-                    <span class="placeholder col-12 bg-dark"></span>
-                </p>
-                <div id="checkboxes-container" class="row"></div>
-            </div>
-        </div>
-        <div class="card-footer">
+        <div class="col-1"></div>
+        <div class="col-5">
+            <br>
+            <br>
             <div class="btn btn-primary" id="deselect-all">Deselect All</div>
             <div class="btn btn-primary" id="select-all">Select All</div>
+            <br>
+            <br>
             <div id="checkboxes">
                 <!-- Checkboxes will be added here by JavaScript -->
             </div>
         </div>
-        <script>
-            drawRadarGraph();
-
-        </script>s
     </div>
+
+
 
 </body>
 </html>

@@ -41,13 +41,14 @@ async function drawRadarGraph() {
     const w = 600;
     const h = 600;
 
+
     // Create the SVG container for the radar chart
     const svg = d3.select("#radar-chart")
       .append("svg")
       .attr("width", w+200)
-      .attr("height", h+400)
+      .attr("height", h+50)
       .append("g")
-      .attr("transform", `translate(${w / 2}, ${200+h / 2})`);
+      .attr("transform", `translate(${w / 2}, ${30+h / 2})`);
 
     // Create a scale for each dimension
     const scales = {
@@ -114,7 +115,7 @@ async function drawRadarGraph() {
     });
 
     function AddAxis(){
-        const axisNames = ["Working hours", "Population", "Income per hour", "Cheaper health cost", "Cheaper food cost", "Equality"];
+        const axisNames = ["Less work hours", "Population", "Income per hour", "Cheaper health cost", "Cheaper food cost", "Equality"];
         for (let i = 0; i < axisNames.length; i++) {
             let angle = (i / axisNames.length) * 2 * Math.PI;
             svg.append("line")

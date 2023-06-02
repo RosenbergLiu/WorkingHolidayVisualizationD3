@@ -5,10 +5,15 @@ async function drawStackBarGraph(sortBy = 'food_share') {
     // Clearing placeholder
     d3.select('#stack-bar-chart').selectAll('*').remove();
 
-    // Set dimensions and margins of the graph
-    const margin = {top: 20, right: 30, bottom: 40, left: 90},
-        width = 460 - margin.left - margin.right,
-        height = 800 - margin.top - margin.bottom;
+    let margin = {top: 20, right: 900, bottom: 50, left: 50};
+    let container = d3.select("#steam-chart-container").node().getBoundingClientRect();
+    let containerWidth = container.width;
+
+    let width = containerWidth - margin.left - margin.right;
+    let height = 800 - margin.top - margin.bottom;
+
+
+
 
     // Append svg object to the body of the page
     const svg = d3.select("#stack-bar-chart")
